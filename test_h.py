@@ -1,44 +1,51 @@
-import unittest
-from studinfo import studinfo
+# define an empty list to hold our tasks
+tasks = []
 
-class Teststudinfo(unittest.TestCase):
+# define a function to add a task to the list
+def add_task(task):
+    # task = input("Enter task: ")
+    tasks.append(task)
+    print("Task added.")
+    return task
 
-   def test_fullname(self):
+# define a function to remove a task from the list
+def remove_task():
+    task = input("Enter task to remove: ")
+    if task in tasks:
+        tasks.remove(task)
+        print("Task removed.")
+        return task
+    else:
+        print("Task not found.")
 
-      stud_1 = studinfo('pratik','santhosh',230601)
-      stud_2 = studinfo('adarshh', 'nm', 120500)
+# define a function to display all tasks in the list
+def view_tasks():
+    if tasks:
+        for task in tasks:
+            print(task)
+            return tasks
+    else:
+        print("No tasks.")
 
-      self.assertEqual(stud_1.fullname,'pratik santhosh')
-      self.assertEqual(stud_2.fullname,'adarshh nm')
+# define a main function to run the program
+def main():
+    while True:
+        print("\n1. Add task\n2. Remove task\n3. View tasks\n4. Quit")
+        choice = input("Enter choice: ")
+        if choice == "1":
+            add_task()
+        elif choice == "2":
+            remove_task()
+        elif choice == "3":
+            view_tasks()
+        elif choice == "4":
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid choice.")
 
-      stud_1.first ='sam'
-      stud_2.first ='john'
-
-      self.assertEqual(stud_1.fullname, 'sam santhosh')
-      self.assertEqual(stud_2.fullname, 'john nm')
-
-   def test_email(self):
-       stud_1 = studinfo('pratik', 'santhosh', 230601)
-       stud_2 = studinfo('adarshh', 'nm', 120500)
-
-       self.assertEqual(stud_1.email, 'pratik.santhosh@btech.christuniverity.in')
-       self.assertEqual(stud_2.email, 'adarshh.nm@btech.christuniverity.in')
-
-
-       stud_1.first = 'sam'
-       stud_2.first = 'john'
-
-   def test_regist_num(self):
-       stud_1 = studinfo('pratik', 'santhosh', 230601)
-       stud_2 = studinfo('adarshh', 'nm', 120500)
-
-       stud_1.regist_num()
-       stud_2.regist_num()
-
-
-       self.assertEqual(stud_1.regno, 2306019)
-       self.assertEqual(stud_2.regno, 1205000)
-
+if __name__ == "__main__":
+    main()
 
 
 
